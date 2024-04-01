@@ -1,1 +1,14 @@
+[[sources]]
+type = "github"
+owner = "mgit-at"
+repo = "nixos-common"
 
+[[sources]]
+type = "github"
+owner = "mgit-at"
+repo = "nix-unify"
+
+[[sources]]
+type = "github"
+owner = "mgit-at"
+repo = "cert-viewer"
