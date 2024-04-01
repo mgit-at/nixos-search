@@ -8,6 +8,7 @@ import Html
         ( Html
         , a
         , div
+        , h1
         , footer
         , header
         , img
@@ -404,8 +405,8 @@ view model =
                     [ div [ class "navbar navbar-static-top" ]
                         [ div [ class "navbar-inner" ]
                             [ div [ class "container" ]
-                                [ a [ class "brand", href "https://nixos.org" ]
-                                    [ img [ alt "NixOS logo", src "/images/nix-logo.png", class "logo" ] []
+                              [ a [ class "brand", href "https://mgit.at" ]
+                                  [ img [ alt "mgit logo", src "https://mgit.at/img/logo.png", class "logo" ] []
                                     ]
                                 , div []
                                     [ ul [ class "nav pull-left" ]
@@ -422,16 +423,13 @@ view model =
                         [ div []
                             [ span [] [ text "Please help us improve the search by " ]
                             , a
-                                [ href "https://github.com/NixOS/nixos-search/issues"
+                            [ href "https://github.com/mgit-at/nixos-search/issues"
                                 ]
                                 [ text "reporting issues" ]
                             , span [] [ text "." ]
                             ]
                         , div []
-                            [ span [] [ text "❤️  " ]
-                            , span [] [ text "Elasticsearch instance graciously provided by " ]
-                            , a [ href "https://bonsai.io" ] [ text "Bonsai" ]
-                            , span [] [ text ". Thank you! ❤️ " ]
+                            [ span [] [ text ". " ]
                             ]
                         ]
                     ]
@@ -460,12 +458,12 @@ viewNavigation route =
                     _ ->
                         Route.SearchArgs Nothing Nothing Nothing Nothing Nothing Nothing Nothing Nothing
     in
-    li [] [ a [ href "https://nixos.org" ] [ text "Back to nixos.org" ] ]
+    li [] [ a [ href "https://mgit.at" ] [ text "Back to mgit.at" ] ]
         :: List.map
             (viewNavigationItem route)
-            [ ( Route.Packages searchArgs, text "Packages" )
-            , ( Route.Options searchArgs, text "NixOS options" )
-            , ( Route.Flakes searchArgs, span [] [ text "Flakes", sup [] [ span [ class "label label-info" ] [ small [] [ text "Experimental" ] ] ] ] )
+            [ ( Route.Packages searchArgs, text "NixOS Packages" )
+            , ( Route.Options searchArgs, text "NixOS Options" )
+            , ( Route.Flakes searchArgs, text "mgit Options & Packages" )
             ]
 
 
@@ -483,7 +481,7 @@ viewPage : Model -> Html Msg
 viewPage model =
     case model.page of
         NotFound ->
-            div [] [ text "Not Found" ]
+            h1 [] [ text "Not Found" ]
 
         Packages packagesModel ->
             Html.map (\m -> PackagesMsg m) <| Page.Packages.view model.nixosChannels packagesModel

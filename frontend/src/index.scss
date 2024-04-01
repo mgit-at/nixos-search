@@ -1,6 +1,6 @@
 :root {
-  --text-color: #333;
-  --background-color: #fff;
+  --text-color: rgba(2, 81, 141, 0.9);
+  --background-color: rgba(2, 81, 141, 0.1);
   --terminal-background: #333;
   --terminal-color: #fff;
   --result-item-show-more-background: #fff;
@@ -29,6 +29,10 @@
   --badge-background: #757575;
 }
 
+.logo {
+  filter: invert(1);
+}
+
 /* ------------------------------------------------------------------------- */
 /* -- Darkmode specific styles --------------------------------------------- */
 /* ------------------------------------------------------------------------- */
@@ -40,9 +44,9 @@
     --text-color: rgba(255, 255, 255, 0.85);
     --text-color-light: rgba(255, 255, 255, 0.5);
     --text-color-warning: #f8e45c;
-    --background-color: #242424;
+    --background-color: rgba(2, 81, 141, 0.9);
     --hover-background: #ffffff13;
-    --button-background: #393939;
+    --button-background: rgba(2, 81, 141, 1);
     --button-hover-background: #454545;
     --button-active-background: #656565;
     --button-active-hover-background: #707070;
@@ -83,6 +87,10 @@
 
     /* Headerbar background color */
     --headerbar-background-color: #303030;
+  }
+
+  .logo {
+    filter: none;
   }
 
   // Override bootstrap styles for some common things.
@@ -277,7 +285,7 @@
         filter: brightness(0) invert(1);
       }
 
-      background: var(--headerbar-background-color);
+      background: var(--headerbar-background-color) !important;
       border-bottom: none;
 
       li>a {
