@@ -33,19 +33,11 @@ jobs:
         mkdir ./dist
         cp -RL ./result/* ./dist/
 
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v3.0
+    - name: Deploy to nixos-search.mgit.at
       env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      with:
-        production-branch: 'main'
-        production-deploy: ${{ github.event_name == 'push' }}
-        publish-dir: './dist'
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: 'Deploy from GitHub Actions'
-        enable-pull-request-comment: true
-        overwrites-pull-request-comment: true
-        enable-commit-comment: false
-        enable-commit-status: true
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      run: |
+        echo "$DEPLOY_KEY" > deploy
+        chmod 700 deploy
+        rsync -ravpd -e"ssh -o StrictHostKeyChecking=no -i deploy" dist/ deploy@misc-public.mgit.at:
       if: github.repository_owner == 'mgit-at'
