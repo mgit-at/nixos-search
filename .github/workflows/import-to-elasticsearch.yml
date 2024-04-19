@@ -63,14 +63,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         nix run --accept-flake-config .#flake-info -- --push --elastic-schema-version=$(< VERSION) nixpkgs ${{ matrix.channel }}
-      if: github.repository_owner == 'NixOS'
+      if: github.repository_owner == 'mgit-at'
 
     - name: Warmup ${{ matrix.channel }} channel
       run: |
         for (( i = 0; i < 3; i++ )) do
           curl -sS ${{ secrets.ELASTICSEARCH_URL2 }}/latest-$(< VERSION)-nixos-${{ matrix.channel }}/_search | jq -c '.took // .'
         done
-      if: github.repository_owner == 'NixOS'
+      if: github.repository_owner == 'mgit-at'
 
     - name: Create issue if failed
       if: failure()
@@ -111,11 +111,11 @@ jobs:
     - name: Import ${{ matrix.group }} group
       run: |
         nix run --accept-flake-config .#flake-info -- --push --elastic-schema-version=$(< ./VERSION) group ./flakes/${{ matrix.group }}.toml ${{ matrix.group }}
-      if: github.repository_owner == 'NixOS'
+      if: github.repository_owner == 'mgit-at'
 
     - name: Warmup ${{ matrix.group }} group
       run: |
         for (( i = 0; i < 3; i++ )) do
           curl -sS ${{ secrets.ELASTICSEARCH_URL2 }}/latest-$(< VERSION)-group-${{ matrix.group }}/_search | jq -c '.took // .'
         done
-      if: github.repository_owner == 'NixOS'
+      if: github.repository_owner == 'mgit-at'
