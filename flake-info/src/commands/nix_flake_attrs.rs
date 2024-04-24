@@ -5,10 +5,9 @@ use serde_json::Deserializer;
 use std::fmt::Display;
 use std::path::PathBuf;
 
-const ARGS: [&str; 4] = [
+const ARGS: [&str; 3] = [
     "eval",
     "--json",
-    "--no-allow-import-from-derivation",
     "--no-write-lock-file",
 ];
 
