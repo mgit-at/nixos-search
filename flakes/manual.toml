@@ -12,3 +12,8 @@ repo = "nix-unify"
 type = "github"
 owner = "mgit-at"
 repo = "cert-viewer"
+
+[[sources]]
+type = "github"
+owner = "mgit-at"
+repo = "hetzner-robot-failover-keepalived"
