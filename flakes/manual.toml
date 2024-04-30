@@ -17,3 +17,8 @@ repo = "cert-viewer"
 type = "github"
 owner = "mgit-at"
 repo = "hetzner-robot-failover-keepalived"
+
+[[sources]]
+type = "github"
+owner = "mgit-at"
+repo = "prometheus-mgit-exporter"
